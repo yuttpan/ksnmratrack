@@ -14,17 +14,19 @@
 
 
 <ion-content padding>
+  <form novalidate [formGroup]="myForm" (ngSubmit)="signin()">
   <ion-list>
     
       <ion-item>
         <ion-label fixed>Username</ion-label>
-        <ion-input type="text" value=""></ion-input>
+        <ion-input formControlName="username" type="text" value=""></ion-input>
       </ion-item>
     
       <ion-item>
         <ion-label fixed>Password</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input formControlName="password" type="password"></ion-input>
       </ion-item>
-    <ion-item> <button ion-button full >LOGIN</button></ion-item>
+    <ion-item> <button ion-button full  type="submit">LOGIN</button></ion-item>
     </ion-list>
+  </form> 
 </ion-content>
