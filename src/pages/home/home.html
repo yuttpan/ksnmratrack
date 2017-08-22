@@ -1,10 +1,8 @@
 <ion-header>
   <ion-navbar color="primary" >
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
+     
     
-    <ion-title>KSN MRTRACK</ion-title>
+    <ion-title  align = "center">KSN MRA_TRACK</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -13,14 +11,14 @@
   <ion-card>
       <img src="../../assets/img/mra.jpg"/>
       <ion-card-content>
-        <ion-card-title>
+        <ion-card-title align = "center">
           ระบบติดตามเวชระเบียน
           </ion-card-title>
-        <p>
+        <p align = "center">
            โรงพยาบาลแก้งสนามนาง
         </p>
       </ion-card-content>
     </ion-card>
        
-    <button ion-button full>เริ่มต้น</button>
+    <button ion-button full (click)="goTologin()">เริ่มต้น</button>
 </ion-content>
