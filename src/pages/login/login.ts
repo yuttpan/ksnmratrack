@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { IonicPage, NavController, NavParams,AlertController,LoadingController } from 'ionic-angular';
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 import { FeedBack } from "../../model/feedback";
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -46,7 +47,7 @@ export class LoginPage {
     let password = this.myForm.controls['password'].value;
   
     let loader = this.loadingCtrl.create({
-       content: 'กำลังบันทึกข้อมูล...' 
+       content: 'กำลังตรวจสอบข้อมูล...' 
     });
     loader.present();
   
@@ -54,20 +55,21 @@ export class LoginPage {
       res => {
          this.feedback = res;
          if (this.feedback.status == 'ok') {
-            //console.log(this.feedback.message);
+            console.log(this.feedback);
+            let alert = this.alerCtrl.create({
+              title: this.feedback.message+this.feedback.name,
+              buttons: ['ตกลง']
+            });
+            alert.present();
+            this.myForm.reset();
+         } else { //status == 'error'
+            console.log(this.feedback.message);
             let alert = this.alerCtrl.create({
               title: this.feedback.message,
               buttons: ['ตกลง']
             });
             alert.present();
             this.myForm.reset();
-         } else { //status == 'error'
-            //console.log(this.feedback.message);
-            let alert = this.alerCtrl.create({
-              title: this.feedback.message,
-              buttons: ['ตกลง']
-            });
-            alert.present();
          }
       }, error => {
          this.errorMessage = <any> error,
