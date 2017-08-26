@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IonicPage, NavController, NavParams,AlertController,LoadingController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 import { FeedBack } from "../../model/feedback";
+import { MainPage } from "../main/main";
 
 /**
  * Generated class for the LoginPage page.
@@ -16,7 +19,7 @@ import { FeedBack } from "../../model/feedback";
   selector: 'page-login',
   templateUrl: 'login.html',
 })
-export class LoginPage {
+export class LoginPage { 
   myForm:FormGroup;
   username:FormControl;
   password:FormControl;
@@ -26,6 +29,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
              public navParams: NavParams,
              public fb:FormBuilder,
+             public storage: Storage,
              private authservice:AuthServiceProvider,
              private alerCtrl:AlertController,
              private loadingCtrl:LoadingController) {
@@ -61,15 +65,26 @@ export class LoginPage {
               buttons: ['ตกลง']
             });
             alert.present();
-            this.myForm.reset();
+            this.storage.set('userstatus', this.feedback.status);
+            this.storage.set('username', this.feedback.name);
+            this.storage.get('userstatus').then((val) => {
+              console.log( val );
+              
+            });
+            this.storage.get('username').then((vals) => {
+              console.log( vals );
+              
+            });
+             this.navCtrl.push('MainPage');
          } else { //status == 'error'
-            console.log(this.feedback.message);
+           // console.log(this.feedback.message);
             let alert = this.alerCtrl.create({
               title: this.feedback.message,
               buttons: ['ตกลง']
             });
             alert.present();
             this.myForm.reset();
+            
          }
       }, error => {
          this.errorMessage = <any> error,
