@@ -31,29 +31,30 @@ export class SearchmraPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     // public fb:FormBuilder,
     public storage: Storage,
-    private searchAN : SearchAnProvider) {
-      
-            this.storage.get('username').then((vals) => {
-              this.usernames = vals ;
-              
-            });
-          }
-  doSeachAN(){
-    console.log(this.anText);
-   this.searchAN.getAn(this.anText)
-     .then((data: any) => {
+    private searchAN: SearchAnProvider) {
 
-       this.anData = data;
-       
+    this.storage.get('username').then((vals) => {
+      this.usernames = vals;
+
+    });
+  }
+  doSeachAN() {
+    console.log(this.anText);
+    this.searchAN.getAn(this.anText)
+      .then((data: any) => {
+
+        this.anData = data;
+
       }, (error) => { });
 
   }
 
-  goShowMra(){
-    console.log('showMRA');
-    this.navCtrl.push(ShowmraPage);
+  goShowMra(item):void {
+    console.log(item);
+    this.navCtrl.push(ShowmraPage, {
+      an : item
+      
+    });
   }
 
-
 }
-

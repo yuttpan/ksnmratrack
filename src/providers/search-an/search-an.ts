@@ -45,4 +45,21 @@ export class SearchAnProvider {
         });
     });
   }
+
+
+  getMra(an:string){
+    console.log(an);
+    return new Promise((resolve, reject) => {
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      let body = { an: an  };
+      this.http.post(`${this.url}/showmra.php`, body, options)
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data)
+        }, err => {
+          reject(err)
+        });
+    });
+  }
 }

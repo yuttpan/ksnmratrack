@@ -34,13 +34,13 @@
         
         
 
-  <ion-card *ngFor="let item of anData" padding>
+  <ion-card *ngFor="let item of anData" (click)="goShowMra(item.an)" padding >
     
     <div class="card-title">AN : {{item.an}}   HN : {{item.hn}}</div>
    
     <div class="card-subtitle">ชื่อ - นามสกุล : {{item.ptname}}</div>
     <div class="card-subtitle">วันที่ออก : {{item.tdchdate}}</div>
-    <button ion-button full (click)="goShowMra()">แสดง</button>
+    
   </ion-card>
    
      

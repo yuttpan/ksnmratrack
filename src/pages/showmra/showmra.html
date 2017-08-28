@@ -7,12 +7,23 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>showmra</ion-title>
+    <ion-title>ข้อมูลล่าสุด</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-card *ngFor="let item of mraData"  padding >
+    
+    <div class="card-title">AN : {{item.an}}   HN : {{item.hn}}</div>
+   
+    <div class="card-subtitle">ชื่อ - นามสกุล : {{item.ptname}}</div>
+    <div class="card-subtitle">ผู้ส่งล่าสุด : {{item.user_s}}</div>
+    <div class="card-subtitle">เวลาส่ง : {{item.send_date}}</div>
+    <div class="card-subtitle">ผู้รับล่าสุด : {{item.user_r}}</div>
+    <div class="card-subtitle">เวลา : {{item.recivedate}}</div>
 
+    
+  </ion-card>
 </ion-content>
