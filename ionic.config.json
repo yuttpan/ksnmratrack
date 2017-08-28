@@ -1,6 +1,6 @@
 {
   "name": "mratrack",
-  "app_id": "",
+  "app_id": "92c1474c",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
