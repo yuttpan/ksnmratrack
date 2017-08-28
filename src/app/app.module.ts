@@ -10,6 +10,7 @@ import { ListPage } from '../pages/list/list';
 import { LoginPageModule } from "../pages/login/login.module";
 import { SearchmraPageModule } from "../pages/searchmra/searchmra.module";
 import { MainPageModule } from "../pages/main/main.module";
+import { ShowmraPageModule } from "../pages/showmra/showmra.module";
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -30,7 +31,7 @@ import { SearchAnProvider } from '../providers/search-an/search-an';
   imports: [
     BrowserModule, HttpModule,
     IonicModule.forRoot(MyApp),LoginPageModule,SearchmraPageModule,
-    MainPageModule,
+    MainPageModule,ShowmraPageModule,
     IonicStorageModule.forRoot({
       name: '__mydb',
       driverOrder: ['indexeddb', 'sqlite', 'websql']

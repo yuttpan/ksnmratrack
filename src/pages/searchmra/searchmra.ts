@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, LoadingController
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { HomePage } from "../home/home";
+import { ShowmraPage } from "../showmra/showmra";
 
 
 import { SearchAnProvider } from "../../providers/search-an/search-an";
@@ -46,6 +47,11 @@ export class SearchmraPage {
        
       }, (error) => { });
 
+  }
+
+  goShowMra(){
+    console.log('showMRA');
+    this.navCtrl.push(ShowmraPage);
   }
 
 
