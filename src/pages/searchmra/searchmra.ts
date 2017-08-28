@@ -38,11 +38,12 @@ export class SearchmraPage {
             });
           }
   doSeachAN(){
-    this.searchAN.getAn(this.anText)
-      .then((data: any) => {
+    console.log(this.anText);
+   this.searchAN.getAn(this.anText)
+     .then((data: any) => {
 
-        this.anData = data;
-        console.log(this.anData);
+       this.anData = data;
+       
       }, (error) => { });
 
   }
