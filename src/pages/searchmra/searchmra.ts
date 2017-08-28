@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { HomePage } from "../home/home";
 
 
-import { Item } from "../../model/anSearch";
+import { SearchAnProvider } from "../../providers/search-an/search-an";
 /**
  * Generated class for the SearchmraPage page.
  *
@@ -19,22 +19,24 @@ import { Item } from "../../model/anSearch";
   templateUrl: 'searchmra.html', 
 })
 export class SearchmraPage {
-  myForm:FormGroup;
-  anSerrch:FormControl;
-  item:Item;
+  //myForm:FormGroup;
+  //anSerrch:FormControl;
+  
   errorMessage:string;
 private usernames : string;
+public users : Array<{name:string,email:string}>=[];
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public fb:FormBuilder,
-    public storage: Storage) {
+   // public fb:FormBuilder,
+    public storage: Storage,
+  private searchAN : SearchAnProvider) {
 
       this.storage.get('username').then((vals) => {
         this.usernames = vals ;
         
       });
-      this.myForm = this.fb.group({
+     /* this.myForm = this.fb.group({
         'anSerrch': this.anSerrch
-      });
+      });*/
 
     }
     
@@ -42,9 +44,13 @@ private usernames : string;
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchmraPage');
   }
-  ionViewWillLeave() {
-    console.log("Looks like I'm about to leave ");
-    
-  }
+  ionViewWillEnter(){
+   this.searchAN.getAn()
+   .then((data:any)=>{
+     
+     this.users = data ;
+     console.log(this.users);
+   },(error)=>{})
+  } ;
   
 }

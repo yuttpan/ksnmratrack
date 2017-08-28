@@ -17,20 +17,15 @@
 
 
 <ion-content padding>
-  <ion-card>
-    <ion-card-header>
-      ค้นหาเวชระเบียน
-    </ion-card-header>
-    <form novalidate [formGroup]="myForm" (ngSubmit)="searchAn()">
-      <ion-list>
-        
-        <ion-item>
-          <ion-label fixed>AN</ion-label>
-          <ion-input formControlName="anSerrch" type="text" value=""></ion-input>
-          
+  
+   
+     
+    <ion-list>
+      <ion-item *ngFor="let user of users">
+          {{user.email}}
         </ion-item>
-        <ion-item> <button ion-button full  type="submit">SEARCH</button></ion-item>
-      </ion-list>
-    </form>
-  </ion-card>
+      
+        
+        </ion-list>
+
 </ion-content>
