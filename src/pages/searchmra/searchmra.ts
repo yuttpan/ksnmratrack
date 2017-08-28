@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController,LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { HomePage } from "../home/home";
@@ -16,41 +16,37 @@ import { SearchAnProvider } from "../../providers/search-an/search-an";
 @IonicPage()
 @Component({
   selector: 'page-searchmra',
-  templateUrl: 'searchmra.html', 
+  templateUrl: 'searchmra.html',
 })
 export class SearchmraPage {
   //myForm:FormGroup;
   //anSerrch:FormControl;
-  
-  errorMessage:string;
-private usernames : string;
-public users : Array<{name:string,email:string}>=[];
+
+  errorMessage: string;
+  private usernames: string;
+  public anText: string;
+  public users: Array<{ name: string, email: string }> = [];
+  public anData: Array<{ an: string, hn: string, ptname: string, tdchdate: string }> = [];
   constructor(public navCtrl: NavController, public navParams: NavParams,
-   // public fb:FormBuilder,
+    // public fb:FormBuilder,
     public storage: Storage,
-  private searchAN : SearchAnProvider) {
+    private searchAN : SearchAnProvider) {
+      
+            this.storage.get('username').then((vals) => {
+              this.usernames = vals ;
+              
+            });
+          }
+  doSeachAN(){
+    this.searchAN.getAn(this.anText)
+      .then((data: any) => {
 
-      this.storage.get('username').then((vals) => {
-        this.usernames = vals ;
-        
-      });
-     /* this.myForm = this.fb.group({
-        'anSerrch': this.anSerrch
-      });*/
+        this.anData = data;
+        console.log(this.anData);
+      }, (error) => { });
 
-    }
-    
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SearchmraPage');
   }
-  ionViewWillEnter(){
-   this.searchAN.getAn()
-   .then((data:any)=>{
-     
-     this.users = data ;
-     console.log(this.users);
-   },(error)=>{})
-  } ;
-  
+
+
 }
+

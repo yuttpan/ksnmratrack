@@ -17,15 +17,33 @@
 
 
 <ion-content padding>
-  
+
+    <ion-list>
+        
+          <ion-item>
+            <ion-label>AN</ion-label>
+            <ion-input type="text" [(ngModel)]="anText"></ion-input>
+          </ion-item>
+        
+      
+          <div>
+              <button ion-button full  (click)="doSeachAN()"[disabled]="!anText">ค้นหา</button>
+            </div>
+        </ion-list>
+        
+        
+        
+
+  <ion-card *ngFor="let item of anData" padding>
+    
+    <div class="card-title">AN : {{item.an}}   HN : {{item.hn}}</div>
+   
+    <div class="card-subtitle">ชื่อ - นามสกุล : {{item.ptname}}</div>
+    <div class="card-subtitle">วันที่ออก : {{item.tdchdate}}</div>
+    <button ion-button full>แสดง</button>
+  </ion-card>
    
      
-    <ion-list>
-      <ion-item *ngFor="let user of users">
-          {{user.email}}
-        </ion-item>
-      
-        
-        </ion-list>
+   
 
 </ion-content>
